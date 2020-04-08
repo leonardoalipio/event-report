@@ -1,4 +1,8 @@
-namespace ProAgil.Domain
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ProAgil.Business.Models
 {
     public class RedeSocial
     {

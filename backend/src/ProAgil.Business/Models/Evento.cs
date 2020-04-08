@@ -1,7 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace ProAgil.Domain
+namespace ProAgil.Business.Models
 {
     public class Evento
     {
