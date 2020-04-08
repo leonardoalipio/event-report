@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace ProAgil.Domain
 {
     public class Evento
