@@ -25,7 +25,9 @@ namespace ProAgil.Data.Repositories
                     .ThenInclude(p => p.Evento);
             }
 
-            query = query.OrderBy(p => p.Nome)
+            query = query
+                .AsNoTracking()
+                .OrderBy(p => p.Nome)
                 .Where(p => p.Id == palestranteId);
 
             return await query.FirstOrDefaultAsync();
@@ -43,7 +45,9 @@ namespace ProAgil.Data.Repositories
                     .ThenInclude(e => e.Evento);
             }
 
-            query = query.Where(p => p.Nome.ToLower().Contains(name.ToLower()));
+            query = query
+                .AsNoTracking()
+                .Where(p => p.Nome.ToLower().Contains(name.ToLower()));
 
             return await query.ToArrayAsync();
         }

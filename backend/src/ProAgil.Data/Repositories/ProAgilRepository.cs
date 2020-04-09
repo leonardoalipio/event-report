@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using ProAgil.Business.Interfaces;
 using ProAgil.Data.Context;
 
@@ -9,6 +10,7 @@ namespace ProAgil.Data.Repositories {
 
         public ProAgilRepository (ProAgilContext context) {
             _context = context;
+            _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
         public void Add (TEntity entity) {

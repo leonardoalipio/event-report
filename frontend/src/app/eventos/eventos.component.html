@@ -1,0 +1,22 @@
+<p>
+  eventos works!
+</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>Local</td>
+      <td>Tema</td>
+      <td>Quantidade de Pessoas</td>
+    </tr>
+
+  </thead>
+    <tr *ngFor="let item of eventos">
+      <td>{{ item.local }}</td>
+      <td>{{ item.tema }}</td>
+      <td>{{ item.qtdPessoas }}</td>
+    </tr>
+  <tbody>
+
+  </tbody>
+</table>
