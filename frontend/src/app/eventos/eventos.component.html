@@ -1,22 +1,60 @@
-<p>
-  eventos works!
-</p>
-
-<table class="table">
-  <thead>
+<div action="" class="form-inline">
+  <div class="form-group mb-2">
+    <label class="mr-2">Filtro:</label>
+    <input
+      type="text"
+      class="form-control mr-2"
+      placeholder="buscar"
+      [(ngModel)]="filtroLista"
+    >
+    <button type="button" class="btn btn-outline-success">Buscar</button>
+  </div>
+</div>
+<h4>Filtro: {{ filtroLista }}</h4>
+<table class="table table-striped">
+  <thead class="thead-dark">
     <tr>
-      <td>Local</td>
-      <td>Tema</td>
-      <td>Quantidade de Pessoas</td>
+      <th>
+        <button (click)="alternarImagem()" class="btn btn-outline-info">Show Img</button>
+      </th>
+      <th>#</th>
+      <th>Tema</th>
+      <th>Local</th>
+      <th>Data</th>
+      <th>Qtd Pessoas</th>
+      <th>Lote</th>
+      <th>Opções</th>
     </tr>
-
   </thead>
-    <tr *ngFor="let item of eventos">
-      <td>{{ item.local }}</td>
-      <td>{{ item.tema }}</td>
-      <td>{{ item.qtdPessoas }}</td>
-    </tr>
-  <tbody>
 
+  <tbody *ngIf="eventos && eventos.length">
+    <tr *ngFor="let item of eventosFiltrados">
+      <td>
+        <img *ngIf="mostrarImagem"
+          src="http://localhost:5000/img/{{item.imageURL}}"
+          [style.width.px] = "imgLargura"
+          [style.margin.px] = "imgMargem"
+        >
+      </td>
+      <td>{{ item.id }}</td>
+      <td>{{ item.tema }}</td>
+      <td>{{ item.local }}</td>
+      <td>{{ item.dataEvento | date:'dd MMM yyyy' }}</td>
+      <td>{{ item.qtdPessoas }}</td>
+      <td>{{ item.lote }}</td>
+      <td>
+        <button class="btn btn-info" placeholder="Detalhes"><i class="fas fa-info-circle"></i></button>
+        <button class="btn btn-warning" placeholder="Editar"><i class="fas fa-pen"></i></button>
+        <button class="btn btn-danger" placeholder="Excluir"><i class="fas fa-trash"></i></button>
+      </td>
+    </tr>
   </tbody>
+
+  <tfoot *ngIf="!eventos.length">
+    <tr>
+      <td colspan="7" class="text-center">
+        <h4>Nenhum evento encontrado!</h4>
+      </td>
+    </tr>
+  </tfoot>
 </table>
