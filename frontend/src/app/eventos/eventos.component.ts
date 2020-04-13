@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { EventoService } from '../_services/evento.service';
+import { Evento } from '../_models/Evento';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-eventos',
@@ -7,6 +9,22 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./eventos.component.css']
 })
 export class EventosComponent implements OnInit {
+
+  constructor(
+    private eventoService: EventoService,
+    private modalService: BsModalService
+    ) { }
+
+  ngOnInit() {
+    this.getEventos()
+  }
+
+  eventosFiltrados: Evento[];
+  eventos: Evento[];
+  imgLargura = 80;
+  imgMargem = 3;
+  mostrarImagem = false;
+  modalRef: BsModalRef;
 
   _filtroLista: string;
   public get filtroLista() : string {
@@ -17,32 +35,25 @@ export class EventosComponent implements OnInit {
     this.eventosFiltrados = this.filtroLista ? this.filtrarEvento(this.filtroLista) : this.eventos;
   }
 
-  eventosFiltrados: any = [];
-  eventos: any = [];
-  imgLargura = 80;
-  imgMargem = 3;
-  mostrarImagem = false;
-
-  constructor(private http: HttpClient) { }
-
-  ngOnInit() {
-    this.getEventos()
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template)
   }
 
   alternarImagem(){
     this.mostrarImagem = !this.mostrarImagem
   }
 
-  filtrarEvento(filtroLista: string): any {
-    filtroLista = filtroLista.toLocaleLowerCase();
+  filtrarEvento(filtroLista: string): Evento[] {
+    filtroLista = filtroLista.toLocaleLowerCase()
     return this.eventos.filter(
-      evento => evento.tema.toLocaleLowerCase().indexOf(filtroLista) !== -1
-    );
+      (evento: any) => evento.tema.toLocaleLowerCase().indexOf(filtroLista) !== -1
+    )
   }
 
   getEventos() {
-    this.http.get('http://localhost:5000/api/evento').subscribe(response => {
+    this.eventoService.getAllEventos().subscribe((response: Evento[]) => {
       this.eventos = response
+      this.eventosFiltrados = this.eventos
       console.log('eventos', this.eventos)
     }, error => {
       console.log(error)
