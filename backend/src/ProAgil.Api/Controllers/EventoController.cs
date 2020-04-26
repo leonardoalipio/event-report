@@ -32,6 +32,21 @@ namespace ProAgil.Api.Controllers
             }
         }
 
+        [HttpGet("{eventoId}")]
+        public async Task<IActionResult> GetById(int eventoId)
+        {
+            try
+            {
+                var results = await _eventoRepo.GetEventoByIdAsync(eventoId, true);
+
+                return Ok(results);
+            }
+            catch (System.Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de Dados Falhou!");
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post(Evento model)
         {
@@ -76,7 +91,7 @@ namespace ProAgil.Api.Controllers
             return BadRequest();
         }
 
-        [HttpDelete]
+        [HttpDelete("{eventoId}")]
         public async Task<IActionResult> Delete(int eventoId)
         {
             try
