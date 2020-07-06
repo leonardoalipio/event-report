@@ -48,7 +48,7 @@
       <td>{{ item.id }}</td>
       <td>{{ item.tema }}</td>
       <td>{{ item.local }}</td>
-      <td>{{ item.dataEvento | date:'dd MMM yyyy' }}</td>
+      <td>{{ item.dataEvento | DateTimeFormat }}</td>
       <td>{{ item.qtdPessoas }}</td>
       <td>
         <div *ngIf="!item.lote.length">
@@ -92,36 +92,36 @@
             <div class="form-group col-md-12">
               <label>Tema</label>
               <input type="text" class="form-control" formControlName="tema"
-                [ngClass]="{'is-invalid': 
+                [ngClass]="{'is-invalid':
                   this.registerForm.get('tema').errors &&
-                  this.registerForm.get('tema').touched}"        
+                  this.registerForm.get('tema').touched}"
               >
               <div class="invalid-feedback"
                 *ngIf="this.registerForm.get('tema').hasError('required') &&
-                this.registerForm.get('tema').touched"  
+                this.registerForm.get('tema').touched"
               >
                 O Tema é obrigatório.
               </div>
               <div class="invalid-feedback"
                 *ngIf="this.registerForm.get('tema').hasError('minlength') &&
-                this.registerForm.get('tema').touched"  
+                this.registerForm.get('tema').touched"
               >
                 Tema deve ter no minimo 4 caracteres.
               </div>
               <div class="invalid-feedback"
                 *ngIf="this.registerForm.get('tema').hasError('maxlength') &&
-                this.registerForm.get('tema').touched"  
+                this.registerForm.get('tema').touched"
               >
                 Tema deve ter no minimo 50 caracteres.
               </div>
-            </div>    
-          </div>  
-        
+            </div>
+          </div>
+
           <div class="form-row">
             <div class="form-group col-md-8">
               <label>Local</label>
               <input type="text" class="form-control" formControlName="local"
-                [ngClass]="{'is-invalid': 
+                [ngClass]="{'is-invalid':
                   this.registerForm.get('local').errors &&
                   this.registerForm.get('local').touched}"
                 >
@@ -131,11 +131,11 @@
                 O Local é obrigatório.
               </div>
             </div>
-        
+
             <div class="form-group col-md-4">
               <label>Data e Hora</label>
               <input type="text" class="form-control" formControlName="dataEvento"
-                [ngClass]="{'is-invalid': 
+                [ngClass]="{'is-invalid':
                   this.registerForm.get('dataEvento').errors &&
                   this.registerForm.get('dataEvento').touched}"
                 bsDatepicker
@@ -146,13 +146,13 @@
                 A Data e Hora é obrigatório.
               </div>
             </div>
-          </div>  
-        
+          </div>
+
           <div class="form-row">
             <div class="form-group col-md-3">
               <label>Qtd Pessoas</label>
               <input type="number" class="form-control" formControlName="qtdPessoas"
-                [ngClass]="{'is-invalid': 
+                [ngClass]="{'is-invalid':
                   this.registerForm.get('qtdPessoas').errors &&
                   this.registerForm.get('qtdPessoas').touched}">
               <div class="invalid-feedback"
@@ -166,11 +166,11 @@
                 A Qtd Pessoas máxima de passoas é de 120.000.
               </div>
             </div>
-        
+
             <div class="form-group col-md-9">
               <label>Imagem</label>
               <input type="text" class="form-control" formControlName="imageURL"
-                [ngClass]="{'is-invalid': 
+                [ngClass]="{'is-invalid':
                   this.registerForm.get('imageURL').errors &&
                   this.registerForm.get('imageURL').touched}">
               <div class="invalid-feedback"
@@ -179,13 +179,13 @@
                 A Imagem é obrigatório.
               </div>
             </div>
-          </div> 
-        
+          </div>
+
           <div class="form-row">
             <div class="form-group col-md-8">
               <label>Telefone</label>
               <input type="text" class="form-control" formControlName="telefone"
-                [ngClass]="{'is-invalid': 
+                [ngClass]="{'is-invalid':
                   this.registerForm.get('telefone').errors &&
                   this.registerForm.get('telefone').touched}">
               <div class="invalid-feedback"
@@ -197,7 +197,7 @@
             <div class="form-group col-md-4">
               <label>Email</label>
               <input type="text" class="form-control" formControlName="email"
-                [ngClass]="{'is-invalid': 
+                [ngClass]="{'is-invalid':
                   this.registerForm.get('email').errors &&
                   this.registerForm.get('email').touched}">
               <div class="invalid-feedback"
@@ -211,8 +211,8 @@
                 O Email é deve ser válido.
               </div>
             </div>
-          </div> 
-        
+          </div>
+
         </form>
       </div>
       <div class="modal-footer d-flex">
@@ -240,8 +240,8 @@
     		</div>
     		<div class="modal-body">
       		{{bodyDeletarEvento}}
-    		</div>    
-    		<div class="modal-footer btn-group d-flex">      
+    		</div>
+    		<div class="modal-footer btn-group d-flex">
       			<button type="button" class="btn btn-outline-primary" (click)="confirm.hide()">
         			CENCELAR
       			</button>

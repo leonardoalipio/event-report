@@ -12,12 +12,15 @@ import { BrowserAnimationsModule  } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { EventosComponent } from './eventos/eventos.component';
 import { NavComponent } from './nav/nav.component';
+import { DateTimeFormatPipe } from './_helpers/DateTimeFormat.pipe';
+import { EventoService } from './_services/evento.service';
 
 @NgModule({
    declarations: [
       AppComponent,
       EventosComponent,
-      NavComponent
+      NavComponent,
+      DateTimeFormatPipe
    ],
    imports: [
       HttpClientModule,
@@ -31,7 +34,9 @@ import { NavComponent } from './nav/nav.component';
       BsDatepickerModule.forRoot(),
       ReactiveFormsModule
    ],
-   providers: [],
+   providers: [
+     EventoService
+   ],
    bootstrap: [
       AppComponent
    ]

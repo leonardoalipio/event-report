@@ -17,7 +17,7 @@ export class EventosComponent implements OnInit {
     private eventoService: EventoService,
     private formBuilder: FormBuilder,
     private localeService: BsLocaleService
-    ) { 
+    ) {
 
     this.localeService.use('pt-br')
 
@@ -97,10 +97,10 @@ export class EventosComponent implements OnInit {
     this.openModal(template);
     this.evento = evento;
     this.bodyDeletarEvento = `
-      <p> Tem certeza que deseja excluir o Evento: ${evento.tema} </br> Código: ${evento.id} </p>
+      Tem certeza que deseja excluir o Evento: ${evento.tema} \n Código: ${evento.id}
     `;
   }
-  
+
   editEvento(template: any, evento: Evento) {
     this.modalTitle = `Editar Evento ${evento.tema}`
     this.typeSave = 'put'
@@ -137,6 +137,7 @@ export class EventosComponent implements OnInit {
     this.eventoService.getAllEventos().subscribe((response: Evento[]) => {
       this.eventos = response
       this.eventosFiltrados = this.eventos
+      console.log(response)
     }, error => {
       console.log(error)
     })
